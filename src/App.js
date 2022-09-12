@@ -4,6 +4,8 @@ import './App.css';
 
 function App() {
   const [apiData, setApiData] = useState([])
+  const [list, setList] = useState(['London'])
+  const [value, setValue] = useState('')
 
   const options = {
     method: 'GET',
@@ -27,13 +29,24 @@ function App() {
     GetData()
   }, [])
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setValue('')
+    setList(value)
+  }
+
+  const handleChange = (e) => {
+    const { value } = e.target
+    setValue(value)
+  }
+
   return (
     <div className="App">
 
       <div className="NavBar">
         <div className="LocationTitle">
           <div className="LeftSideNavBar">
-            <h1>London</h1>
+            <h1>{list}</h1>
           </div>
           <div className="RightSideNavBar">
           </div>
@@ -41,11 +54,10 @@ function App() {
       </div>
 
       <div className="Input">
-        <form action="">
-          <input type="text" placeholder='Enter Location Here...' />
+        <form action="" onSubmit={handleSubmit}>
+          <input type="text" placeholder='Enter Location Here...' onChange={handleChange} value={value} />
         </form>
       </div>
-
 
       {apiData.map(result => {
         return <div>{result.city}</div>
