@@ -34,7 +34,16 @@
   display: flex;
   justify-content: start;
   align-items: center;
+  height: 100%;
   margin: 0rem .5rem;
+}
+
+.Clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  opacity: .5;
 }
 
 /* Input */
@@ -44,4 +53,6 @@ input {
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, .2);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+  outline: none;
+  text-decoration: none;
 }

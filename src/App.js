@@ -6,6 +6,7 @@ function App() {
   const [apiData, setApiData] = useState([])
   const [list, setList] = useState(['London'])
   const [value, setValue] = useState('')
+  const [clock, setClock] = useState('')
 
   const options = {
     method: 'GET',
@@ -25,9 +26,18 @@ function App() {
     });
   }
 
+  function Clock() {
+    setInterval(() => {
+      const date = new Date();
+      setClock(date.toLocaleTimeString())
+    }, 1000)
+  }
+
   useEffect(() => {
     GetData()
+    Clock()
   }, [])
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -44,9 +54,12 @@ function App() {
     <div className="App">
 
       <div className="NavBar">
-        <div className="LocationTitle">
-          <div className="LeftSideNavBar">
+        <div className="LeftSideNavBar">
+          <div className="LocationTitle">
             <h1>{list}</h1>
+            <div className="Clock">
+              {clock}
+            </div>
           </div>
           <div className="RightSideNavBar">
           </div>
