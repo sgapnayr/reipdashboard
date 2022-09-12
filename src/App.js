@@ -3,16 +3,28 @@ import axios from 'axios'
 import './App.css';
 
 function App() {
-  const [apiData, setApiData] = useState('')
+  const [apiData, setApiData] = useState([])
 
-  const url = ``
+  const options = {
+    method: 'GET',
+    url: 'https://zillow56.p.rapidapi.com/search',
+    params: { location: 'houston, tx' },
+    headers: {
+      'X-RapidAPI-Key': '2a5ae053bdmsh289fd6e9e075512p1bb69djsn1890178e4707',
+      'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
+    }
+  };
 
-  function getData() {
-    axios.get(url).then(res => setApiData(res.data)).catch(err => console.log(err))
+  function GetData() {
+    axios.request(options).then(function (response) {
+      console.log(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
   }
 
   useEffect(() => {
-    getData()
+    GetData()
   }, [])
 
   return (
@@ -28,9 +40,16 @@ function App() {
         </div>
       </div>
 
-      <form action="">
-        <input type="text" />
-      </form>
+      <div className="Input">
+        <form action="">
+          <input type="text" placeholder='Enter Location Here...' />
+        </form>
+      </div>
+
+
+      {apiData.map(result => {
+        return <div>{result.city}</div>
+      })}
     </div>
   );
 }

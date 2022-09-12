@@ -36,3 +36,12 @@
   align-items: center;
   margin: 0rem .5rem;
 }
+
+/* Input */
+input {
+  margin: .5rem;
+  padding: .5rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+}
