@@ -8,11 +8,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const [apiData, setApiData] = useState([])
+  const [news, setNews] = useState([])
   const [visibility, setVisibility] = useState(false)
 
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`
-
-  const url2 = `https://api.coingecko.com/api/v3/coins/bitcoin`
 
   function GetData() {
     axios.get(url).then(res => setApiData(res.data)).catch(err => console.log(err))
@@ -22,9 +21,18 @@ function App() {
     setVisibility(!visibility)
   }
 
+  const newUrl = 'https://newsdata.io/api/1/news?apikey=pub_1122295a0600dd09ce2e7948214b07ef822fb&q=Real%20Estate '
+
+  async function GetNews() {
+    await axios.get(newUrl).then(res => setNews(res.data.results))
+  }
+
   useEffect(() => {
     GetData()
+    GetNews()
   }, [])
+
+
   return (
     <div className="App">
       <NavBar />
@@ -68,11 +76,23 @@ function App() {
               <BarChart />
             </div>
           </div>
-          <div className="DataDiv">News</div>
+          <div className="NewsDiv">
+            <div className="News">
+              {news.map(n => {
+                return (
+                  <>
+                    <h1>{n.title}</h1>
+                    <p>
+                      {n.content}
+                    </p>
+                  </>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
-
-    </div >
+    </div>
   );
 }
 
