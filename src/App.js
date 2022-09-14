@@ -38,7 +38,9 @@ function App() {
       <NavBar />
 
       <div className="Carousel">
-        ↑CPI: 2.3%
+        <div className="CarouselInfo">
+          ↑CPI: 2.3%
+        </div>
       </div>
 
       <div className="DataContainers">
@@ -57,7 +59,10 @@ function App() {
           </div>
         </div>
 
-        <button onClick={handleClick}>{visibility ? 'Visible' : 'Visibility-None'}</button>
+        <div className="Button">
+          <button onClick={handleClick}>{visibility ? 'Show Less' : 'Show More'}</button>
+        </div>
+
         <div className={visibility ? 'DataContainer SecondRow' : 'None'}>
           <div className='DataDiv'>
             More Information... Blah Blah
