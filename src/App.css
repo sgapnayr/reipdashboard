@@ -18,24 +18,75 @@
 }
 
 :root {
-  --primary-color: rgb(224, 224, 224);
+  --primary-color: rgb(222, 220, 220);
 }
 
 /* NavBar */
 .NavBar {
   height: 5rem;
   width: 100%;
-  background: rgb(224, 224, 224);
+  background: var(--primary-color);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 200;
+}
+
+.DashBoardTitle {
+  margin: .5rem;
+}
+
+.DashBoardTitleSmall {
+  font-style: italic;
+  color: gray;
+  font-size: small;
 }
 
 .LeftSideNavBar {
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   height: 100%;
-  margin: 0rem .5rem;
+}
+
+.CenterNavBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+a {
+  margin: .5rem;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+  transition: .2s all ease-in-out;
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-shadow: 1px 1px 12px rgba(0, 0, 0, 0)
+}
+
+.RightSideNavBar {
+  width: 33%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
 }
 
 .Clock {
@@ -46,13 +97,80 @@
   opacity: .5;
 }
 
-/* Input */
-input {
-  margin: .5rem;
-  padding: .5rem 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, .2);
+/* Carousel */
+.Carousel {
+  width: 100%;
+  height: 3rem;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
-  outline: none;
-  text-decoration: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  color: gray;
+}
+
+/* DataContainer */
+.DataContainers {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 70vh;
+}
+
+.DataContainer {
+  width: 100%;
+  height: 100%;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+  background: var(--primary-color);
+  overflow: scroll;
+  color: white;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.FirstRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.SecondRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ThirdRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.DataDiv {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+  color: white;
+  border: 1px solid white;
+}
+
+.LongRow {
+  grid-column: 1 / 3;
+}
+
+/* Data */
+.Rates {
+  background-color: green;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
 }

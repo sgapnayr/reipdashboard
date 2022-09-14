@@ -1,80 +1,54 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css';
+import NavBar from './compoonents/NavBar/NavBar';
 
 function App() {
   const [apiData, setApiData] = useState([])
-  const [list, setList] = useState(['London'])
-  const [value, setValue] = useState('')
-  const [clock, setClock] = useState('')
 
-  const options = {
-    method: 'GET',
-    url: 'https://zillow56.p.rapidapi.com/search',
-    params: { location: 'houston, tx' },
-    headers: {
-      'X-RapidAPI-Key': '2a5ae053bdmsh289fd6e9e075512p1bb69djsn1890178e4707',
-      'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
-    }
-  };
+  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`
+
+  const url2 = `https://api.coingecko.com/api/v3/coins/bitcoin`
 
   function GetData() {
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
-  }
-
-  function Clock() {
-    setInterval(() => {
-      const date = new Date();
-      setClock(date.toLocaleTimeString())
-    }, 1000)
+    axios.get(url).then(res => setApiData(res.data)).catch(err => console.log(err))
   }
 
   useEffect(() => {
     GetData()
-    Clock()
   }, [])
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setValue('')
-    setList(value)
-  }
-
-  const handleChange = (e) => {
-    const { value } = e.target
-    setValue(value)
-  }
 
   return (
     <div className="App">
+      <NavBar />
 
-      <div className="NavBar">
-        <div className="LeftSideNavBar">
-          <div className="LocationTitle">
-            <h1>{list}</h1>
-            <div className="Clock">
-              {clock}
+      <div className="Carousel">
+        Ticker Info
+      </div>
+
+      <div className="DataContainers">
+        <div className="DataContainer FirstRow">
+          <div className="DataDiv LongRow">
+            <div className="Chart">Chart</div>
+          </div>
+          <div className="DataDiv">
+            <div className="Rates">
+              <p>Rates</p>
+              <h1>7.1%</h1>
             </div>
           </div>
-          <div className="RightSideNavBar">
-          </div>
+        </div>
+
+        <div className="DataContainer SecondRow">
+          To Be Determined...
+        </div>
+        <div className="DataContainer ThirdRow">
+          <div className="DataDiv">Mortgage</div>
+          <div className="DataDiv">Graph</div>
+          <div className="DataDiv">Graph</div>
         </div>
       </div>
 
-      <div className="Input">
-        <form action="" onSubmit={handleSubmit}>
-          <input type="text" placeholder='Enter Location Here...' onChange={handleChange} value={value} />
-        </form>
-      </div>
-
-      {apiData.map(result => {
-        return <div>{result.city}</div>
-      })}
     </div>
   );
 }
